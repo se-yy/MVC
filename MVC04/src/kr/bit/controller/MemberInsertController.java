@@ -32,11 +32,13 @@ public class MemberInsertController implements Controller {
 		MemberDAO dao = new MemberDAO();
 		int cnt = dao.memberInsert(vo);
 		
+		String ctx = request.getContextPath();
 		String nextPage = null;
+		
 		if (cnt > 0) {
 			// 가입 성공
 			// 다시 회원 리스트 보기 페이지로 가야함 (/MVC04/memberList.do)
-			nextPage = "redirect:/MVC04/memberList.do";
+			nextPage = "redirect:"+ctx+"/memberList.do";
 		} else {
 			// 가입 실패 -> 예외 객체를 만들어서 WAS에게 던지자
 			throw new ServletException("not insert");

@@ -27,11 +27,14 @@ public class MemberUpdateController implements Controller {
 		
 		MemberDAO dao = new MemberDAO();
 		int cnt = dao.memberUpdate(vo);
+		
+		String ctx = request.getContextPath();
 		String nextPage = null;
+		
 		if (cnt > 0) {
 			// 수정 성공
 			// 다시 회원 리스트 보기 페이지로 가야함 (/MVC04/memberList.do)
-			nextPage = "redirect:/MVC04/memberList.do";
+			nextPage = "redirect:"+ ctx +"/memberList.do";
 		} else {
 			// 수정 실패 -> 예외 객체를 만들어서 WAS에게 던지자
 			throw new ServletException("not update");

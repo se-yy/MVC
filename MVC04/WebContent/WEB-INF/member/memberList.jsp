@@ -6,6 +6,9 @@
 <%
 	// ArrayList<MemberVO> list = (ArrayList<MemberVO>)request.getAttribute("list");
 %>
+
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +25,7 @@
 <!-- 삭제 시 javascript 사용 -->
 <script type="text/javascript">
 	function deleteFn(num) {
-		location.href="memberDelete.do?num="+num;
+		location.href="${ctx}/memberDelete.do?num="+num;
 	}
 </script>
 
@@ -43,7 +46,7 @@
 		<c:forEach var="vo" items="${list}">
 			<tr>
 				<td>${vo.num}</td>
-				<td><a href="memberContent.do?num=${vo.num}">${vo.id}</a></td>
+				<td><a href="${ctx }/memberContent.do?num=${vo.num}">${vo.id}</a></td>
 				<td>${vo.pass}</td>
 				<td>${vo.name}</td>
 				<td>${vo.age}</td>
@@ -56,7 +59,7 @@
 		<tr>
 			<td colspan='8' align='right'><input type='button' value='회원가입'
 				class='btn btn-primary'
-				onclick="location.href='/MVC04/memberRegister.do'" /></td>
+				onclick="location.href='${ctx}/memberRegister.do'" /></td>
 		</tr>
 	</table>
 </body>

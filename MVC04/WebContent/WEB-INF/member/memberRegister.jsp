@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix='c' uri="http://java.sun.com/jsp/jstl/core"%>
+    
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +16,7 @@
 </head>
 <body>
 	회원가입 화면
-	<form action="/MVC04/memberInsert.do" method="post">
+	<form action="${ctx }/memberInsert.do" method="post">
 		<table class="table table-bordered">
 			<tr>
 				<td>아이디</td>

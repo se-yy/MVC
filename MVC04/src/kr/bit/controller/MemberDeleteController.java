@@ -17,10 +17,13 @@ public class MemberDeleteController implements Controller {
 		
 		MemberDAO dao = new MemberDAO();
 		int cnt = dao.memberDelete(num);
+		
+		String ctx = request.getContextPath(); // /MVC04
 		String nextPage = null;
+		
 		if (cnt > 0) { // 삭제 성공
 			// 응답을 목록페이지로 넘겨줌
-			nextPage = "redirect:/MVC04/memberList.do";
+			nextPage = "redirect:"+ ctx +"/memberList.do";
 		} else
 			throw new ServletException("not delete");
 		return nextPage;
