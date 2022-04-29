@@ -19,6 +19,6 @@
     </environment>
   </environments>
   <mappers>
-    <mapper resource="kr/bit/mabatis/MemberMapper.xml"/>
+    <mapper resource="kr/bit/mybatis/MemberMapper.xml"/>
   </mappers>
 </configuration>
