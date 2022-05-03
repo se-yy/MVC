@@ -34,7 +34,7 @@ public class MemberLoginController implements Controller {
 		} else { // 실패
 			request.getSession().setAttribute("userID", "");
 			request.getSession().setAttribute("userName", "");
-			request.setAttribute("msg", "사용자 정보가 올바르지 않습니다.");
+			request.getSession().setAttribute("msg", "사용자 정보가 올바르지 않습니다.");
 		}
 		
 		// 리스트 페이지로
