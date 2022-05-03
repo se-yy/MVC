@@ -24,6 +24,8 @@
   $(document).ready(function(){
 	  <c:if test="${!empty msg}">
 	    alert("${msg}");
+	    // session에 저장되어 있는 msg 값을 제거
+	    <c:remove var="msg" scope="session"/>
 	  </c:if>
   });
   function deleteFn(num){
