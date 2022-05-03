@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 public class MemberDAO {
+	
    private static SqlSessionFactory sqlSessionFactory; //[O O O O O ]
  
    // 초기화 블럭-프로그램실행시 딱 한번만 실되는 코드영역

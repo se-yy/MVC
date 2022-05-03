@@ -14,7 +14,7 @@ public class MemberLoginController implements Controller {
 	@Override
 	public String requestHandler(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// 아이디, 패스워드 받기
+		// 아이디,패스워드 받기
 		String user_id = request.getParameter("user_id");
 		String password = request.getParameter("password");
 		
