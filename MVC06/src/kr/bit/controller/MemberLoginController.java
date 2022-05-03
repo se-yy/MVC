@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.bit.model.MemberDAO;
 import kr.bit.model.MemberVO;
@@ -29,8 +30,9 @@ public class MemberLoginController implements Controller {
 		// user_name에 값이 있으면 인증 성공, 없으면 인증 실패
 		if (user_name != null && !("".equals(user_name))) { // null 체크 2번
 			// 성공
-			request.getSession().setAttribute("userID", user_id);
-			request.getSession().setAttribute("userName", user_name);
+			HttpSession session = request.getSession();
+			session.setAttribute("userID", user_id);
+			session.setAttribute("userName", user_name);
 		} else { // 실패
 			request.getSession().setAttribute("userID", "");
 			request.getSession().setAttribute("userName", "");
