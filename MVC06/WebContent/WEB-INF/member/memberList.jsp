@@ -49,7 +49,7 @@
 	<h2>회원관리 시스템</h2>
 	<div class="panel panel-default">
 		<div class="panel-heading">
-		<c:if test="${sessionScope.userID==null || sessionScope.userID==''}">
+		<c:if test="${sessionScope.userId==null || sessionScope.userId==''}">
 			<form class="form-inline" action="${ctx}/memberLogin.do" method="post">
 				<div class="form-group">
 					<label for="user_id">ID:</label> <input type="text"
@@ -62,6 +62,7 @@
 				<button type="submit" class="btn btn-default" onclick="return check()">로그인</button>
 			</form>
 		</c:if>
+		
 		
 		</div>
 		<div class="panel-body">

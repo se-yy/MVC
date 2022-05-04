@@ -31,10 +31,10 @@ public class MemberLoginController implements Controller {
 		if (user_name != null && !("".equals(user_name))) { // null 체크 2번
 			// 성공
 			HttpSession session = request.getSession();
-			session.setAttribute("userID", user_id);
+			session.setAttribute("userId", user_id);
 			session.setAttribute("userName", user_name);
 		} else { // 실패
-			request.getSession().setAttribute("userID", "");
+			request.getSession().setAttribute("userId", "");
 			request.getSession().setAttribute("userName", "");
 			request.getSession().setAttribute("msg", "사용자 정보가 올바르지 않습니다.");
 		}
