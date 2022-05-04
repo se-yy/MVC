@@ -36,7 +36,7 @@
 		  alert("아이디를 입력하세요");
 		  return false;
 	  }
-	  if ($('#password').val() == '') {s
+	  if ($('#password').val() == '') {
 		  alert("비밀번호를 입력하세요");
 		  return false;
 	  }
@@ -63,6 +63,10 @@
 			</form>
 		</c:if>
 		
+		<c:if test="${sessionScope.userId!=null && sessionScope.userId!=''}">
+			${sessionScope.userName}님 환영합니다.
+			<button type="button" class="btn btn-warning">로그아웃</button>
+		</c:if>
 		
 		</div>
 		<div class="panel-body">
@@ -90,8 +94,18 @@
 								<td>${vo.age}</td>
 								<td>${vo.email}</td>
 								<td>${vo.phone}</td>
-								<td><input type="button" value="삭제" class="btn btn-warning"
+								
+								<!-- 로그인 성공 시 본인것만 삭제 -->
+								<c:if test="${sessionScope.userId==vo.id}">
+									<td><input type="button" value="삭제" class="btn btn-warning"
 									onclick="deleteFn(${vo.num})"></td>
+								</c:if>
+								
+								<!-- 다른 회원들 삭제 못하게 버튼 활성화 끄기 -->
+								<c:if test="${sessionScope.userId!=vo.id}">
+									<td><input type="button" value="삭제" class="btn btn-warning"
+									onclick="deleteFn(${vo.num})" disabled="disabled"></td>
+								</c:if>
 							</tr>
 						</c:forEach>
 						<tr>
