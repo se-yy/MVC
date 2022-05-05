@@ -35,7 +35,6 @@
     </update>
     
     <select id="memberLogin" parameterType="memberVO" resultType="String">
-    	select name from member where id=#{id} and pass=#{pass}
+        select name from member where id=#{id} and pass=#{pass}       
     </select>
-    
 </mapper>
