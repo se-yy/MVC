@@ -1,66 +1,111 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import="kr.bit.model.*" %>    
+	pageEncoding="UTF-8"%>
+<%@ page import="kr.bit.model.*"%>
 <%
-  // MemberVO vo=(MemberVO)request.getAttribute("vo");
-%>    
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
-<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+	// MemberVO vo=(MemberVO)request.getAttribute("vo");
+%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="ctx" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
-<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css'>
-<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
-<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js'></script>
+<link rel='stylesheet'
+	href='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css'>
+<script
+	src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+<script
+	src='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js'></script>
+
+<script type="text/javascript">
+	function update() {
+		document.form1.action="<c:url value='memberUpdate.do'/>";
+		document.form1.submit();
+	}
+	function formReset() {
+		document.form1.reset();
+	}
+</script>
 </head>
 <body>
-<form action="${ctx}/memberUpdate.do" method="post">
-<input type="hidden" name="num" value="${vo.num}"/>
-<table class='table table-bordered'>
-<c:if test="${vo!=null}">
-  <tr>
-    <td colspan="2">${vo.name} 회원의 상세보기</td>
-  </tr>
-  <tr>
-    <td>번호</td>
-    <td>${vo.num}</td>
-  </tr>
-   <tr>
-    <td>아이디</td>
-    <td>${vo.id}</td>
-  </tr>
-   <tr>
-    <td>비밀번호</td>
-    <td>${vo.pass}</td>
-  </tr>  
-    <tr>
-    <td>이름</td>
-    <td>${vo.name}</td>
-  </tr> 
-  <tr>
-    <td>나이</td>
-    <td><input type="text" name="age" value="${vo.age}"/></td>
-  </tr> 
-     <tr>
-    <td>이메일</td>
-    <td><input type="text" name="email" value="${vo.email}"/></td>
-  </tr>
-  <tr>
-    <td>전화번호</td>
-    <td><input type="text" name="phone" value="${vo.phone}"/></td>
-  </tr> 
-</c:if>
- <tr>
-    <td colspan="2" align="center">
-       <input type="submit" value="수정하기" class='btn btn-primary'/>
-       <input type="reset" value="취소" class='btn btn-warning'/>
-       <input type="button" value="리스트" onclick="location.href='${ctx}/memberList.do'" class='btn btn-success'/>
-    </td>
-  </tr>
-</table>
-</form>
+
+	<div class="container">
+		<h2>회원관리시스템</h2>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<c:if test="${sessionScope.userId!=null && sessionScope.userId!=''}">
+					<h3>${sessionScope.userName}님환영합니다.</h3>
+				</c:if>
+				<c:if test="${sessionScope.userId==null || sessionScope.userId==''}">
+					<h3>안녕하세요</h3>
+				</c:if>
+			</div>
+			<div class="panel-body">
+			<form id="form1" name="form1" class="form-horizontal" method="post">
+				<input type="hidden" name="num" value="${vo.num}" />
+				<div class="form-group">
+					<label class="control-label col-sm-2">번호:</label>
+					<div class="col-sm-10">
+						<c:out value="${vo.num}"></c:out>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2">아이디:</label>
+					<div class="col-sm-10">
+						<c:out value="${vo.id}"></c:out>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2">비밀번호:</label>
+					<div class="col-sm-10">
+						<c:out value="${vo.pass}"></c:out>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2">이름:</label>
+					<div class="col-sm-10">
+						<c:out value="${vo.name}"></c:out>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2">나이:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="age" name="age" value="${vo.age}">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2">이메일:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="email" name="email" value="${vo.email}">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2">전화번호:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="phone" name="phone" value="${vo.phone}">
+					</div>
+				</div>
+			</form>
+			</div>
+			
+			<div class="panel-footer" style="text-align: center;">
+			<!-- 로그인 했을 때 내것만 수정하기 -->
+			<c:if test="${!empty sessionScope.userId }">
+				<c:if test="${sessionScope.userId==vo.id}">
+					<input type="button" value="수정하기" class='btn btn-primary' onclick="update()" />
+				</c:if>
+			
+				<c:if test="${sessionScope.userId!=vo.id}">
+					<input type="button" value="수정하기" class='btn btn-primary' onclick="update()" disabled="disabled"/>
+				</c:if>
+			</c:if>
+			
+				<input type="button" value="취소" class='btn btn-warning' onclick="formReset()" />
+				<input type="button" value="리스트" onclick="location.href='${ctx}/memberList.do'" class='btn btn-success' />
+			</div>
+		</div>
+	</div>
 </body>
 </html>
