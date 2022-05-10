@@ -47,7 +47,7 @@
 		  type : "get",
 		  dataType : "json",
 		  success : resultHtml, // 회원리스트로 받기[{ }, { }, { }]
-		  error : function() {error("error");}
+		  error : function(){alert("error");}
 	  });
   }
   function resultHtml(data) {
@@ -73,13 +73,22 @@
 		  html += "<td>"+obj.age+"</td>";
 		  html += "<td>"+obj.email+"</td>";
 		  html += "<td>"+obj.phone+"</td>";
-		  html += "<td>삭제</td>";
+		  html += "<td><input type='button' value='삭제' class='btn btn-warning' onclick='delFn("+obj.num+")'></td>";
 		  html += "</tr>";
 	  });
 	  
 	  html += "</table>"
 	  
 	  $("#collapse1 .panel-body").html(html);
+  }
+  function delFn(num) {
+	  $.ajax({
+		  url : "<c:url value='/memberAjaxDelete.do'/>",
+		  type : "get",
+		  data : {"num" : num},
+		  success : memberList,
+		  error : function(){alert("error");}
+	  })
   }
 </script>
 </head>
