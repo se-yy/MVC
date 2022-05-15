@@ -54,20 +54,22 @@
 		if ($("#file").val() != '') { // 파일이 첨부가 된 경우
 			// 파일을 formdata로 만들어서 서버로 넘김
 			var formData = new FormData();
-			// input 중 이름이 file인 첫번째 객체의 첫번째 파일
-			formData.append("file", $("input[name=file]"])[0].files[0]);
+			// input 태그 중 이름이 file인 첫번째 객체의 첫번째 파일
+			formData.append("file", $("input[name=file]")[0].files[0]);
 			// ajax로 서버에 업로드 요청
 			$.ajax({
-				url : "<c:url value='/fileAdd.do'/>",
+				url : "<c:url value='/fileAdd.do'/>", // 파일 업로드
 				type : "post",
 				data : formData, // binary 형식
 				// formData 형식일때 설정 필요
 				processData : false,
 				contentType : false,
 				success : function(data){ // 업로드된 실제 파일 이름을 전달받기
-					
+					$('#filename').val(data);
+					document.form1.action="<c:url value='memberInsert.do'/>";
+					document.form1.submit();
 				},
-				error : function(alert("error");)
+				error : function(){alert("errer");}
 			})
 		} else { // 파일이 첨부되지 않은 경우
 			
@@ -142,6 +144,9 @@
 						<div class="col-sm-10">
 							<input type="file" class="control-label" id="file" name="file">
 						</div>
+					</div>
+					<div>
+						<input type="hidden" name="filename" id="filename" value="">
 					</div>
 				</form>
 			</div>
