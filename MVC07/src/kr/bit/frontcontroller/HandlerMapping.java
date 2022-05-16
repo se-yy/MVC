@@ -20,6 +20,7 @@ public class HandlerMapping {
 	  mappings.put("/memberDbcheck.do", new MemberDbcheckController());
 	  mappings.put("/memberAjaxList.do", new MemberAjaxListController());
 	  mappings.put("/memberAjaxDelete.do", new MemberAjaxDeleteController());
+	  mappings.put("/fileAdd.do", new fileAddController());
   }
   public Controller getController(String key) { // key=>/memberList.do
 	  return mappings.get(key);
