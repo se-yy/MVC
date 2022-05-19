@@ -67,8 +67,9 @@
 				success : function(data){ // 업로드된 실제 파일 이름을 전달받기
 					$('#filename').val(data);
 				// db에 저장
-					document.form1.action="<c:url value='memberInsert.do'/>"; // text 데이터를 저장하는 부분
-					document.form1.submit();
+					alert(data);
+					/* document.form1.action="<c:url value='memberInsert.do'/>"; // text 데이터를 저장하는 부분
+					document.form1.submit(); */
 				},
 				error : function(){alert("errer");}
 			})
@@ -158,10 +159,7 @@
 						onclick="add()" />
 				</c:if>
 				<c:if test="${sessionScope.userId!=null && sessionScope.userId!=''}">
-					<!-- 
-					<input type="button" value="등록" class='btn btn-primary'
-						onclick="add()" disabled="disabled" />
-					-->
+					
 					<!-- 파일있으면 ajax로 보여주고 없으면 원래대로 -->
 					<input type="button" value="등록" class='btn btn-primary'
 						onclick="add2()" disabled="disabled" />
