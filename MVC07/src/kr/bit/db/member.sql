@@ -36,3 +36,5 @@ create table member1(
  filename varchar(100),
  unique key(id)
 );
+
+select * from member1;

@@ -67,14 +67,14 @@
 				success : function(data){ // 업로드된 실제 파일 이름을 전달받기
 					$('#filename').val(data);
 				// db에 저장
-					alert(data);
-					/* document.form1.action="<c:url value='memberInsert.do'/>"; // text 데이터를 저장하는 부분
-					document.form1.submit(); */
+					document.form1.action="<c:url value='memberInsert.do'/>?mode=fadd"; // text 데이터를 저장하는 부분
+					document.form1.submit();
 				},
 				error : function(){alert("errer");}
 			})
 		} else { // 파일이 첨부되지 않은 경우
-			
+			document.form1.action="<c:url value='memberInsert.do'/>?mode=add"; // text 데이터를 저장하는 부분
+			document.form1.submit();
 		}
 	}
 </script>
@@ -156,13 +156,13 @@
 
 				<c:if test="${sessionScope.userId==null || sessionScope.userId==''}">
 					<input type="button" value="등록" class='btn btn-primary'
-						onclick="add()" />
+						onclick="add2()" />
 				</c:if>
 				<c:if test="${sessionScope.userId!=null && sessionScope.userId!=''}">
 					
-					<!-- 파일있으면 ajax로 보여주고 없으면 원래대로 -->
+					<!-- 파일있으면 ajax로 보내주고 없으면 원래대로 -->
 					<input type="button" value="등록" class='btn btn-primary'
-						onclick="add2()" disabled="disabled" />
+						onclick="add()" disabled="disabled" />
 				</c:if>
 
 				<input type="button" value="취소" class='btn btn-warning'

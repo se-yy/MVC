@@ -30,10 +30,18 @@ public class MemberDAO {
 	   session.close();//반납
 	   return list;
    } 
-   // 회원가입
+   // 회원가입(파일 업로드 X)
    public int memberInsert(MemberVO vo) {
 	   SqlSession session=sqlSessionFactory.openSession();
 	   int cnt=session.insert("memberInsert", vo);
+	   session.commit();
+	   session.close();//반납
+	   return cnt;
+   }
+   // 회원가입(파일 업로드 O)
+   public int memberInsertFile(MemberVO vo) {
+	   SqlSession session=sqlSessionFactory.openSession();
+	   int cnt=session.insert("memberInsertFile", vo);
 	   session.commit();
 	   session.close();//반납
 	   return cnt;
