@@ -58,4 +58,10 @@
     <select id="memberDeleteFile" parameterType="Integer">
         update member1 set filename='' where num=#{num}
     </select>
+    
+    <select id="memberUpdateFile" parameterType="memberVO">
+        update member1
+        set age=#{age}, email=#{email}, phone=#{phone}, filename=#{filename}
+        where num=#{num}
+    </select>
 </mapper>

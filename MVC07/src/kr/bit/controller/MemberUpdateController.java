@@ -23,13 +23,23 @@ public class MemberUpdateController implements Controller{
 		String phone=request.getParameter("phone");
 		
 		MemberVO vo=new MemberVO();
+		if (request.getParameter("mode").equals("fupdate")) {
+			String filename = request.getParameter("filename");
+			vo.setFilename(filename);
+		}
 		vo.setNum(num);
 		vo.setAge(age);
 		vo.setEmail(email);
 		vo.setPhone(phone);
 		
 		MemberDAO dao=new MemberDAO();
-		int cnt=dao.memberUpdate(vo);
+		int cnt = -1;
+		if (request.getParameter("mode").equals("fupdate")) {
+			cnt = dao.memberUpdateFile(vo); // 파일 이름까지 업데이트
+		} else {
+			cnt=dao.memberUpdate(vo);
+		}
+		
 		String nextPage=null;
 		if(cnt>0) {
 		    	// 수정성공		        

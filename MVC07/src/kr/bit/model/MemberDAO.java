@@ -96,6 +96,14 @@ public class MemberDAO {
 	   session.close();
 	   return cnt;
    }
+   // 파일 업데이트
+   public int memberUpdateFile(MemberVO vo) {
+	   SqlSession session=sqlSessionFactory.openSession();
+	   int cnt = session.update("memberUpdateFile", vo);
+	   session.commit();
+	   session.close();
+	   return cnt;
+   }
 }
 
 
