@@ -17,6 +17,7 @@ public class FileGetController implements Controller{
 			throws ServletException, IOException {
 		
 		String filename=request.getParameter("filename");
+		System.out.println(filename);
 		
 		String UPLOAD_DIR = "file_repo";
 		String uploadPath = request.getServletContext().getRealPath("")+File.separator+UPLOAD_DIR;
@@ -29,7 +30,7 @@ public class FileGetController implements Controller{
 		// 다운로드 받을 준비 (서버에서 클라이언트에게 다운로드 준비를 시킴 -> 다운로드 창을 띄운다)
 		response.setContentLength((int)f.length()); // 파일 길이
 		response.setContentType("application/x-msdownload;charset=utf-8"); // 컨텐츠 타입
-		response.setHeader("Content-Disposition", "attachment;filename"+filename+";"); // 다운받을 때 화면
+		response.setHeader("Content-Disposition", "attachment;filename="+filename+";"); // 다운받을 때 화면
 		response.setHeader("Content-Transfer-Encoding", "binary"); // 파일은 binary 로 변환되어 전송됨 
 		response.setHeader("Pragma", "no-cache");
 		response.setHeader("Expires", "0");

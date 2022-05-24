@@ -88,6 +88,14 @@ public class MemberDAO {
 	   
 	   return idDouble; // Yes(중복), No(중복아님)
    }
+   // 파일삭제
+   public int memberDeleteFile(int num) {
+	   SqlSession session=sqlSessionFactory.openSession();
+	   int cnt = session.update("memberDeleteFile", num);
+	   session.commit();
+	   session.close();
+	   return cnt;
+   }
 }
 
 
