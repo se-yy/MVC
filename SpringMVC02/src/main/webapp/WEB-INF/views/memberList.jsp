@@ -23,7 +23,7 @@
 </script>
 </head>
 <body>
-[MVC04 예제 - FrontController+POJO]
+[Spring WEB MVC 02버전]
 <table class="table table-bordered">
   <tr>
     <td>번호</td>
